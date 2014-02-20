@@ -48,11 +48,8 @@ end
 
 if node[:logentries][:logs]
   node[:logentries][:logs].each do |name, path|
-    execute "follow file #{name} at #{path}" do
-      command "le follow #{path} --name \"#{name}\""
-      not_if "le followed #{path}"
-      ignore_failure true
-      notifies :restart, resources(:service => "logentries")
+    logentries_follow name do
+      path path
     end
   end
 end
