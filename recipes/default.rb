@@ -38,7 +38,7 @@ end
 end
 
 execute "register agent" do
-  command "le register"
+  command "le register --name=#{node[:fqdn]} --hostname=#{node[:fqdn]}"
   not_if "grep agent-key /etc/le/config"
 end
 
