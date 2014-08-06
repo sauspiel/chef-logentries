@@ -1,3 +1,5 @@
+return if node[:logentries][:ignore_environments].include?(node.chef_environment)
+
 package "python-simplejson"
 
 codename = node.lsb.codename
